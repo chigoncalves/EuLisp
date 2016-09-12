@@ -5,6 +5,11 @@ set (CMAKE_AUTORCC ON)
 set (CMAKE_AUTOUIC ON)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
+macro (list_stringfy varname)
+  list (REMOVE_DUPLICATES ${varname})
+  string (REPLACE ";" " " ${varname} "${${varname}}")
+endmacro ()
+
 if (NOT CMAKE_BUILD_TYPE)
   set (CMAKE_BUILD_TYPE "Release")
 endif ()
@@ -22,10 +27,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     endif ()
   endif ()
 
-  macro (list_stringfy varname)
-    list (REMOVE_DUPLICATES ${varname})
-    string (REPLACE ";" " " ${varname} "${${varname}}")
-  endmacro ()
 
   set (CMAKE_WARN_DEPRECATED ON)
   set (CMAKE_ERROR_DEPRECATED ON)
@@ -34,7 +35,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
   unset (NDEBUG)
 
   option (ENABLE_SAN "Enable sanatizers." ON)
-  list (APPEND CMAKE_C_FLAGS_DEBUG -Wall -Wextra -Werror -std=c99
+  list (APPEND CMAKE_C_FLAGS_DEBUG -Wall -Wextra -std=c99
                                    -pedantic -Wwrite-strings)
   if (COMPILER_SUPPORTS_SAN)
     set (SAN_BLACKLIST_FILE "${CMAKE_SOURCE_DIR}/res/blacklists.txt")

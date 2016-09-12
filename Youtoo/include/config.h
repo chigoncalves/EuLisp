@@ -26,6 +26,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "conf.h"
+
 #if WORD_LENGTH==32 // 32bit OS
 
     #define ptrNBytes 4

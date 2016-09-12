@@ -13,12 +13,12 @@
   #define _UNUSED_LEVEL_1(var) (static_cast<void>(var))
 #else
   #define _UNUSED_LEVEL_1(var) ((void)var)
-  #ifndef _POSIX_C_SOURCE
-    #define _POSIX_C_SOURCE 200809L
-  #elif _POSIX_C_SOURCE < 200809L
-    #undef 200809L
-    #define _POSIX_C_SOURCE 200809L
-  #endif
+  /* #ifndef _POSIX_C_SOURCE */
+  /*   #define _POSIX_C_SOURCE 200809L */
+  /* #elif _POSIX_C_SOURCE < 200809L */
+  /*   #undef 200809L */
+  /*   #define _POSIX_C_SOURCE 200809L */
+  /* #endif */
 
   #define begin
 #endif	/* __cplusplus */
@@ -49,6 +49,16 @@ _UNUSED_LEVEL_3, _UNUSED_LEVEL_2, _UNUSED_LEVEL_1, 0
 #define _UNUSED_CALL(level, ... ) level (__VA_ARGS__)
 
 #cmakedefine DEBUG 1
+#define ARCH "@ARCH@"
+
+#cmakedefine HAS_READLINE 1
+#ifdef HAS_READLINE
+#define READLINE 1
+#endif
+
+#define WORD_LENGTH @WORD_LENGTH@
+#define EUL_DIR "@EUL_DIR@"
+#define EUL_ARCH "@EUL_ARCH@"
 
 #define block
 #define progn
@@ -56,5 +66,7 @@ _UNUSED_LEVEL_3, _UNUSED_LEVEL_2, _UNUSED_LEVEL_1, 0
 #ifndef NUL
 #define NUL '\0'
 #endif  /* NUL */
+
+#define _POSIX_C_SOURCE 200809L
 
 #endif /* EULISP_SRC_CONFIG_H */

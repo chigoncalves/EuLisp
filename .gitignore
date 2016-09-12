@@ -71,5 +71,6 @@ Doc/EuLisp-0.991/*.toc
 
 # CMake
 build/
+notes/
 
 # end-of-file
