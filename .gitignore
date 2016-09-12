@@ -69,4 +69,7 @@ Doc/EuLisp-0.991/*.tmp
 Doc/EuLisp-0.991/*.out
 Doc/EuLisp-0.991/*.toc
 
+# CMake
+build/
+
 # end-of-file
