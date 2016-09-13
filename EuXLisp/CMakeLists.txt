@@ -1,15 +1,16 @@
-set (EuXLisp_LIBS -ldl -lm)
+link_libraries (${GC_LIBRARIES} ${Readline_LIBRARIES})
+include_directories ("${GC_INCLUDE_DIRS}" "${Readline_LIBRARIES}")
 
-list_stringfy (EuXLisp_LIBS)
+set (euxlisp_LIBS -ldl -lm)
 
-list (APPEND CMAKE_C_FLAGS -std=gnu99
-                           -Wall
-			   -O2
-			   -fpic
-			   -Wl,--export-dynamic # May Add a library?
-			   -m${WORD_LENGTH}
-)
+list_stringfy (euxlisp_LIBS)
+if (GCC OR CLANG)
+  list (APPEND CMAKE_C_FLAGS -std=gnu99
+			     -Wall
+			     -O2
+			     -fpic
+			     -Wl,--export-dynamic
+			     -m${WORD_LENGTH})
+endif ()
 
 list_stringfy (CMAKE_C_FLAGS)
-
-# find_package (Readline)

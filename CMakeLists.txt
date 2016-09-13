@@ -17,9 +17,12 @@ list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake"
 
 include (Utils)
 
-if (DEFINED BUILD_SHARED_LIBS)
+if (NOT DEFINED BUILD_SHARED_LIBS)
   set (BUILD_SHARED_LIBS ON)
 endif ()
+
+include (ThreadSupport)
+eulisp_configure_treading_library ()
 
 find_package (Readline REQUIRED)
 find_package (GC REQUIRED)
@@ -28,17 +31,18 @@ if (Readline_FOUND)
   set (HAS_READLINE 1)
 endif ()
 
-link_libraries (${GC_LIBRARIES} ${Readline_LIBRARIES})
-include_directories ("${GC_INCLUDE_DIRS}" "${Readline_LIBRARIES}")
+# <= EUL_VERSION
+set (eulisp_VERSION pre-0.991)
 
-set (EUL_VERSION pre-0.991)
-
+# => eulisp_DIRECTORY
 set (EUL_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+# => eulisp_BOOT_DIRECTORY
 set (EUL_BOOT_DIR "${EUL_DIR}.boot")
+# youtoo_GC_DIRECTORY
 set (U2_GC_DIR /usr/local)
 
-set (Eulisp_TK_VERSION 8.5) # <= EUL_TK_VERSION
-set (Euisp_TK_FLAGS) # <= EUL_TK_FLAGS
+set (eulisp_TK_VERSION 8.5) # <= EUL_TK_VERSION
+set (euisp_TK_FLAGS) # <= EUL_TK_FLAGS
 
 find_program (EMACS_PROGRAM emacs NAMES gemacs)
 
@@ -48,7 +52,7 @@ endif ()
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
    set (ARCH x86_64)
-   set (EUL_ARCH x86_64)
+   set (EUL_ARCH x86_64) # => eulisp_ARCH
    set (WORD_LENGTH 64)
 else ()
   set (ARCH x86)
@@ -56,9 +60,6 @@ else ()
   set (EUL_ARCH x86_64)
 endif ()
 
-if (NOT THRTYPE)
-  set (THRTYPE DEFAULT)
-endif ()
 
 if (ARCH STREQUAL x86_64)
   # add_subdirectory ()
