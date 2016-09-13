@@ -1,4 +1,6 @@
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories (${Readline_INCLUDE_DIRS})
+link_libraries (${Readline_LIBRARIES})
 
 set (vm_SOURCES "${CMAKE_CURRENT_LIST_DIR}/character.c"
                 "${CMAKE_CURRENT_LIST_DIR}/fpi.c"
@@ -13,8 +15,6 @@ set (vm_SOURCES "${CMAKE_CURRENT_LIST_DIR}/character.c"
 		"${CMAKE_CURRENT_LIST_DIR}/table.c"
 		"${CMAKE_CURRENT_LIST_DIR}/util.c")
 
-if (BUILD_SHARED_LIBS)
-  add_library (eulvm SHARED ${vm_SOURCES})
-else ()
-  add_library (eulvm STATIC ${vm_SOURCES})
-endif ()
+
+
+add_library (eulvm ${vm_SOURCES})

@@ -1,6 +1,3 @@
-link_libraries (${GC_LIBRARIES} ${Readline_LIBRARIES})
-include_directories ("${GC_INCLUDE_DIRS}" "${Readline_LIBRARIES}")
-
 if (GCC OR CLANG)
   list (APPEND CMAKE_C_FLAGS -std=gnu99
 			     -Wall
@@ -32,6 +29,5 @@ list_stringfy (youtoo_LIBS)
 add_subdirectory (Vm)
 add_subdirectory (Telos)
 add_subdirectory (Runtime)
-
-
-#add_subdirectory (Youtoo)
+add_subdirectory (Comptime2)
+add_subdirectory (Youtoo)

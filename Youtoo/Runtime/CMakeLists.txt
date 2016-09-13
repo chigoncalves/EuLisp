@@ -1,3 +1,5 @@
+
+
 set (level_0_SOURCES_I "${CMAKE_CURRENT_LIST_DIR}/liblevel-0.i")
 set (level_1_SOURCES_I "${CMAKE_CURRENT_LIST_DIR}/liblevel-1.i")
 set (math_SOURCES_I "${CMAKE_CURRENT_LIST_DIR}/libmath.i")
@@ -114,6 +116,7 @@ set (math_FF_SOURCES "${CMAKE_CURRENT_LIST_DIR}/Ff/eul-dbl.c")
 add_library (level-0 ${level_0_SOURCES}
                      ${level_n_SOURCES}
 		     ${level_0_FF_SOURCES})
+target_link_libraries (level-0 PUBLIC eulvm)
 
 add_library (level-1 ${level_1_SOURCES}
                      ${level_n_SOURCES}
