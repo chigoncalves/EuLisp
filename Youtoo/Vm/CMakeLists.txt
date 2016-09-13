@@ -1,10 +1,5 @@
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
-cmake_print_variables (BUILD_SHARED_LIBS)
-if (DEFINED BUILD_SHARED_LIBS)
-  set (BUILD_SHARED_LIBS ON)
-endif ()
-
 set (vm_SOURCES "${CMAKE_CURRENT_LIST_DIR}/character.c"
                 "${CMAKE_CURRENT_LIST_DIR}/fpi.c"
 		"${CMAKE_CURRENT_LIST_DIR}/init.c"
@@ -18,6 +13,8 @@ set (vm_SOURCES "${CMAKE_CURRENT_LIST_DIR}/character.c"
 		"${CMAKE_CURRENT_LIST_DIR}/table.c"
 		"${CMAKE_CURRENT_LIST_DIR}/util.c")
 
-add_library (eulvm ${vm_SOURCES})
-
-cmake_print_variables (vm_SOURCES)
+if (BUILD_SHARED_LIBS)
+  add_library (eulvm SHARED ${vm_SOURCES})
+else ()
+  add_library (eulvm STATIC ${vm_SOURCES})
+endif ()

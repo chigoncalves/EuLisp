@@ -52,7 +52,7 @@ BOOT_MAC_EM = boot0.em
 BOOT_MAC_I = $(U2_C_DIR)/boot0.i
 BOOT_MAC_C = $(U2_C_DIR)/boot0.c
 
-TELOS_EM = mop-access.em mop-alloc.em mop-class.em mop-defcl.em \
+TELOS_EM = maop-access.em mop-alloc.em mop-class.em mop-defcl.em \
 	mop-gf.em mop-init.em mop-inspect.em mop-key.em mop-meth.em mop-prim.em \
 	telos.em
 TELOS_C = $(BOOT_C) $(TELOS_EM:%.em=$(U2_C_DIR)/%.c)

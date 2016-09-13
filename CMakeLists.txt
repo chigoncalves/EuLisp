@@ -17,6 +17,10 @@ list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake"
 
 include (Utils)
 
+if (DEFINED BUILD_SHARED_LIBS)
+  set (BUILD_SHARED_LIBS ON)
+endif ()
+
 find_package (Readline REQUIRED)
 find_package (GC REQUIRED)
 
@@ -78,6 +82,8 @@ configure_file ("${CMAKE_SOURCE_DIR}/conf.h.in"
 		@ONLY)
 
 include_directories (${CMAKE_CURRENT_BINARY_DIR})
+
+
 
 add_subdirectory (Youtoo)
 add_subdirectory (EuXLisp)

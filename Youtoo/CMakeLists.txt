@@ -26,3 +26,4 @@ set (Youtoo_LIBS -lmain
 list_stringfy (Youtoo_LIBS)
 
 add_subdirectory (Vm)
+add_subdirectory (Telos)
